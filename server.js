@@ -6,8 +6,14 @@
 // Doesn't support websocekts.
 
 // Including libraries
+const options = {
+	ca: fs.readFileSync('/opt/shared/keys/ca_bundle.crt'),
+	key: fs.readFileSync('/opt/shared/keys/private.key'),
+	cert: fs.readFileSync('/opt/shared/keys/certificate.crt')
+}
 
-var app = require('http').createServer(handler),
+
+var app = require('https').createServer(options, handler),
 	io = require('socket.io').listen(app),
 	nstatic = require('node-static'); // for serving files
 
