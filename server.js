@@ -11,7 +11,7 @@ const options = {
 	key: fs.readFileSync('/opt/shared/keys/private.key'),
 	cert: fs.readFileSync('/opt/shared/keys/certificate.crt')
 }
-
+var fs = require('fs');
 
 var app = require('https').createServer(options, handler),
 	io = require('socket.io').listen(app),
@@ -23,7 +23,7 @@ var fileServer = new nstatic.Server('./');
 	
 // This is the port for our web server.
 // you will need to go to http://localhost:3000 to see it
-var port = process.env.PORT || 8080; // Cloud9 + Heroku || localhost
+var port = process.env.PORT || 443; // Cloud9 + Heroku || localhost
 app.listen(port);
 
 // If the URL of the socket server is opened in a browser
